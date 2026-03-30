@@ -3,21 +3,23 @@ import java.util.Map;
 public class TrainMainMangementSystem {
     public static void main(String[] args) {
         System.out.println("==========================================");
-        System.out.println(" UC4 - Track Bogie Capacities ");
+        System.out.println(" UC5 - Goods Bogies & Safety Compliance ");
         System.out.println("==========================================\n");
-        Map<String, Integer> bogieCapacities = new HashMap<>();
-        bogieCapacities.put("Sleeper", 72);
-        bogieCapacities.put("AC Chair", 60);
-        bogieCapacities.put("First Class", 24);
-        System.out.println("Bogie Capacities (Type -> Seats):");
-        System.out.println(bogieCapacities + "\n");
-        String checkBogie = "AC Chair";
-        System.out.println("Fetching capacity for '" + checkBogie + "':");
-        System.out.println("Capacity: " + bogieCapacities.get(checkBogie) + " seats\n");
-        System.out.println("Iterating through all Bogie Capacities:");
-        for (Map.Entry<String, Integer> entry : bogieCapacities.entrySet()) {
-            System.out.println("Bogie Type: " + entry.getKey() + " | Capacity: " + entry.getValue());
+        Map<String, Boolean> safetyCheck = new HashMap<>();
+        safetyCheck.put("Rectangular", true);
+        safetyCheck.put("Cylindrical", false);
+        System.out.println("Goods Bogie Safety Status:");
+        System.out.println(safetyCheck + "\n");
+        for (Map.Entry<String, Boolean> entry : safetyCheck.entrySet()) {
+            String status = entry.getValue() ? "PASS" : "FAIL";
+            System.out.println("Bogie Type: " + entry.getKey() + " | Safety Status: " + status);
         }
-        System.out.println("\nUC4 map operations completed successfully...");
+        System.out.println("\nChecking specific bogie safety...");
+        if (safetyCheck.get("Cylindrical")) {
+            System.out.println("Cylindrical bogie is safe for dispatch.");
+        } else {
+            System.out.println("ALERT: Cylindrical bogie failed safety check. Maintenance required!");
+        }
+        System.out.println("\nUC5 safety validation completed...");
     }
 }
