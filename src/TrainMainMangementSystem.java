@@ -1,30 +1,36 @@
-
-public class  TrainMainMangementSystem {
+import java.util.Arrays;
+public class TrainMainMangementSystem {
     public static void main(String[] args) {
         System.out.println("==============================================");
-        System.out.println(" UC18 - Linear Search for Bogie ID ");
-        System.out.println("==============================================");
-        System.out.println();
+        System.out.println(" UC19 - Binary Search for Bogie ID ");
+        System.out.println("==============================================\n");
         String[] bogieIds = {"BG101", "BG205", "BG309", "BG412", "BG550"};
-        String searchId = "BG309";
-        System.out.println("Available Bogie IDs:");
+        Arrays.sort(bogieIds);
+        String key = "BG309";
+        System.out.println("Sorted Bogie IDs:");
         for (String id : bogieIds) {
             System.out.println(id);
         }
         System.out.println();
+        int low = 0;
+        int high = bogieIds.length - 1;
         boolean found = false;
-        for (String id : bogieIds) {
-            if (id.equals(searchId)) {
+        while (low <= high) {
+            int mid = low + (high - low) / 2;
+            int comparison = key.compareTo(bogieIds[mid]);
+            if (comparison == 0) {
+                System.out.println("Bogie " + key + " found using Binary Search.");
                 found = true;
                 break;
+            } else if (comparison > 0) {
+                low = mid + 1;
+            } else {
+                high = mid - 1;
             }
         }
-        if (found) {
-            System.out.println("Bogie " + searchId + " found in train consist.");
-        } else {
-            System.out.println("Bogie " + searchId + " not found.");
+        if (!found) {
+            System.out.println("Bogie " + key + " not found in the system.");
         }
-        System.out.println();
-        System.out.println("UC18 search completed...");
+        System.out.println("\nUC19 search completed...");
     }
 }
